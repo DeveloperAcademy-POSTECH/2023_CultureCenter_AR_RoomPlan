@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qdR-sG-hoR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qdR-sG-hoR">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -92,13 +92,24 @@ You can see a preview of your scan at the bottom of the screen so you can make s
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="eOt-Fv-CkS">
                                 <rect key="frame" x="204" y="453" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nSb-Rx-aBk">
+                                <rect key="frame" x="177" y="132" width="75" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="moveSceneView:" destination="ocJ-nv-BaW" eventType="touchUpInside" id="cVh-3H-Tb7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WOl-ED-SbL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="eOt-Fv-CkS" firstAttribute="centerY" secondItem="nWS-xs-VtG" secondAttribute="centerY" id="EQj-yT-Fzs"/>
+                            <constraint firstItem="nSb-Rx-aBk" firstAttribute="top" secondItem="WOl-ED-SbL" secondAttribute="top" constant="41" id="Ec4-Vn-EeR"/>
+                            <constraint firstItem="nSb-Rx-aBk" firstAttribute="leading" secondItem="WOl-ED-SbL" secondAttribute="leading" constant="177" id="gMb-2Y-y3E"/>
                             <constraint firstItem="OzX-Pp-2Ee" firstAttribute="centerX" secondItem="nWS-xs-VtG" secondAttribute="centerX" id="gon-am-9Jr"/>
                             <constraint firstItem="OzX-Pp-2Ee" firstAttribute="bottom" secondItem="WOl-ED-SbL" secondAttribute="bottom" id="s3Z-zR-pG8"/>
+                            <constraint firstItem="WOl-ED-SbL" firstAttribute="trailing" secondItem="nSb-Rx-aBk" secondAttribute="trailing" constant="176" id="wUE-yg-ywb"/>
                             <constraint firstItem="eOt-Fv-CkS" firstAttribute="centerX" secondItem="nWS-xs-VtG" secondAttribute="centerX" id="xev-49-srq"/>
                         </constraints>
                     </view>
@@ -121,6 +132,7 @@ You can see a preview of your scan at the bottom of the screen so you can make s
                         <outlet property="cancelButton" destination="6LV-FR-JQF" id="oID-mD-Z4l"/>
                         <outlet property="doneButton" destination="MQz-pc-UhC" id="5nF-0P-w1J"/>
                         <outlet property="exportButton" destination="OzX-Pp-2Ee" id="b0k-6y-wHv"/>
+                        <outlet property="moveButton" destination="nSb-Rx-aBk" id="KfU-ON-89T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X4N-9i-teE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -142,6 +154,35 @@ You can see a preview of your scan at the bottom of the screen so you can make s
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xpx-88-WV9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-820" y="133"/>
+        </scene>
+        <!--Scene View Controller-->
+        <scene sceneID="JZk-Fk-ZNj">
+            <objects>
+                <viewController id="d8S-XI-KYJ" customClass="SceneViewController" customModule="RoomPlanExampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KVe-C6-vQj">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H9Y-Q8-Vsc">
+                                <rect key="frame" x="0.0" y="47" width="428" height="845"/>
+                            </arscnView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GCG-GJ-iv1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="H9Y-Q8-Vsc" firstAttribute="top" secondItem="GCG-GJ-iv1" secondAttribute="top" id="8B6-2S-sVW"/>
+                            <constraint firstItem="GCG-GJ-iv1" firstAttribute="bottom" secondItem="H9Y-Q8-Vsc" secondAttribute="bottom" id="Ekf-D5-6wy"/>
+                            <constraint firstItem="GCG-GJ-iv1" firstAttribute="trailing" secondItem="H9Y-Q8-Vsc" secondAttribute="trailing" id="T18-N0-cOd"/>
+                            <constraint firstItem="H9Y-Q8-Vsc" firstAttribute="leading" secondItem="GCG-GJ-iv1" secondAttribute="leading" id="pIT-eN-Aa6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="H9Y-Q8-Vsc" id="Q5h-bz-M0h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7yb-tK-IeL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="733" y="133"/>
         </scene>
     </scenes>
     <resources>

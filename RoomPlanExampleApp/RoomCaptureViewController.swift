@@ -16,6 +16,7 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
     @IBOutlet var cancelButton: UIBarButtonItem?
     @IBOutlet var activityIndicator: UIActivityIndicatorView?
     
+    @IBOutlet weak var moveButton: UIButton!
     private var isScanning: Bool = false
     
     private var roomCaptureView: RoomCaptureView!
@@ -110,6 +111,12 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
             print("Error = \(error)")
         }
     }
+    
+    @IBAction func moveSceneView(_ sender: Any) {
+        let sceneView = SceneViewController()
+        self.navigationController?.pushViewController(sceneView, animated: true)
+    }
+    
     
     private func setActiveNavBar() {
         UIView.animate(withDuration: 1.0, animations: {
