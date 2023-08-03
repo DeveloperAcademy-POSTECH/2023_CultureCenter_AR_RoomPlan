@@ -22,6 +22,7 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
     private var roomCaptureView: RoomCaptureView!
     private var roomCaptureSessionConfig: RoomCaptureSession.Configuration = RoomCaptureSession.Configuration()
     
+    // MARK: - 스캔 결과물을 담기 위한 멤버 변수
     private var finalResults: CapturedRoom?
     
     override func viewDidLoad() {
@@ -76,12 +77,14 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
         self.activityIndicator?.stopAnimating()
     }
     
+    // MARK: - 스캔 완료하기
     @IBAction func doneScanning(_ sender: UIBarButtonItem) {
         if isScanning { stopSession() } else { cancelScanning(sender) }
         self.exportButton?.isEnabled = false
         self.activityIndicator?.startAnimating()
     }
 
+    // MARK: - 앞의 네비게이션(OnboardingViewController) 이동하기
     @IBAction func cancelScanning(_ sender: UIBarButtonItem) {
         navigationController?.dismiss(animated: true)
     }
@@ -89,6 +92,7 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
     // Export the USDZ output by specifying the `.parametric` export option.
     // Alternatively, `.mesh` exports a nonparametric file and `.all`
     // exports both in a single USDZ.
+    // MARK: - 룸 플랜 스캔 결과물 내보내기
     @IBAction func exportResults(_ sender: UIButton) {
         let destinationFolderURL = FileManager.default.temporaryDirectory.appending(path: "Export")
         let destinationURL = destinationFolderURL.appending(path: "Room.usdz")
@@ -112,11 +116,12 @@ class RoomCaptureViewController: UIViewController, RoomCaptureViewDelegate, Room
         }
     }
     
+    // MARK: - 룸 플랜 스캔 결과물과 함께 네비게이션(SceneViewController) 이동하기
     @IBAction func moveSceneView(_ sender: Any) {
         let sceneView = SceneViewController()
+        sceneView.finalResults = finalResults
         self.navigationController?.pushViewController(sceneView, animated: true)
     }
-    
     
     private func setActiveNavBar() {
         UIView.animate(withDuration: 1.0, animations: {
